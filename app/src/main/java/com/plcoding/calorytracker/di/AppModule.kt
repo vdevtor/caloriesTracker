@@ -25,5 +25,4 @@ object AppModule {
     fun providesPreferences(sharedPreferences: SharedPreferences): Preferences{
         return DefaultPreferences(sharedPreferences)
     }
-
 }
