@@ -6,7 +6,6 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vitorthemyth.core.domain.Preferences
-import com.vitorthemyth.core.model.ActivityLevel
 import com.vitorthemyth.core.model.GoalType
 import com.vitorthemyth.core.navigation.Route
 import com.vitorthemyth.core.util.UiEvent

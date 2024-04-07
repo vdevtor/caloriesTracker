@@ -22,7 +22,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.onboarding_presentation.components.ActionButton
 import com.example.onboarding_presentation.components.SelectableButton
-import com.vitorthemyth.core.model.ActivityLevel
 import com.vitorthemyth.core.model.GoalType
 import com.vitorthemyth.core.util.UiEvent
 import com.vitorthemyth.core_ui.LocalSpacing
