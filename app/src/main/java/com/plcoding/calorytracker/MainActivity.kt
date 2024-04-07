@@ -10,8 +10,10 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.onboarding_presentation.activity_level.ActivityLevelScreen
 import com.example.onboarding_presentation.age.AgeScreen
 import com.example.onboarding_presentation.gender.GenderScreen
+import com.example.onboarding_presentation.goal.GoalScreen
 import com.example.onboarding_presentation.height.HeightScreen
 import com.example.onboarding_presentation.weight.WeightScreen
 import com.example.onboarding_presentation.welcome.WelcomeScreen
@@ -54,13 +56,13 @@ class MainActivity : ComponentActivity() {
                             WeightScreen(onNavigate = navController::navigate,scaffoldState = scaffoldState)
                         }
                         composable(route = Route.NUTRIENTS_GOAL) {
-
+    
                         }
                         composable(route = Route.ACTIVITY) {
-
+                            ActivityLevelScreen(onNavigate = navController::navigate)
                         }
                         composable(route = Route.GOAL) {
-
+                            GoalScreen(onNavigate = navController::navigate)
                         }
                         composable(route = Route.SEARCH) {
 

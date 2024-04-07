@@ -49,7 +49,6 @@ fun SelectableButton(
             text = text,
             style = textStyle,
             color = if (isSelected) selectedTextColor else  color,
-            modifier = modifier.padding(LocalSpacing.current.spaceSmall)
         )
     }
 }
