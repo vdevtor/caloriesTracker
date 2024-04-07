@@ -29,7 +29,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providesFilterOutDigitsUseCases(sharedPreferences: SharedPreferences): FilterOutDigits{
+    fun providesFilterOutDigitsUseCases(): FilterOutDigits{
         return FilterOutDigits()
     }
 }

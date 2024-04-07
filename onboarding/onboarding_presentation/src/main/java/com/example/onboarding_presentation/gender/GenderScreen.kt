@@ -24,7 +24,6 @@ import com.example.onboarding_presentation.components.SelectableButton
 import com.vitorthemyth.core.model.Gender
 import com.vitorthemyth.core.util.UiEvent
 import com.vitorthemyth.core_ui.LocalSpacing
-import com.vitorthemyth.onboarding_presentation.R
 
 @Composable
 fun GenderScreen(
