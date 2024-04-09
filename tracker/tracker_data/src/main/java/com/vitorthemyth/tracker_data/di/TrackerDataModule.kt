@@ -1,5 +1,8 @@
 package com.vitorthemyth.tracker_data.di
 
+import android.app.Application
+import androidx.room.Room
+import com.vitorthemyth.tracker_data.local.TrackerDataBase
 import com.vitorthemyth.tracker_data.remote.OpenFoodApi
 import dagger.Module
 import dagger.Provides
@@ -37,5 +40,15 @@ object TrackerDataModule {
             .client(client)
             .build()
             .create()
+    }
+
+    @Provides
+    @Singleton
+    fun providesTrackerDataBase(app: Application)  :TrackerDataBase{
+        return Room.databaseBuilder(
+            context = app,
+            klass = TrackerDataBase::class.java,
+            name = "tracker_db"
+        ).build()
     }
 }
