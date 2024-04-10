@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import com.example.onboarding_presentation.components.ActionButton
 import com.vitorthemyth.core.R
@@ -36,7 +37,8 @@ fun WelcomeScreen(
         Text(
             text = stringResource(id = R.string.welcome_text),
             textAlign = TextAlign.Center,
-            style = MaterialTheme.typography.h1
+            style = MaterialTheme.typography.h1,
+            fontWeight = FontWeight.SemiBold
         )
         Spacer(modifier = Modifier.height(spacing.spaceMedium))
 
