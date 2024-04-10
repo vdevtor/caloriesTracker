@@ -2,6 +2,7 @@ package com.vitorthemyth.core.data.preferences
 
 import android.content.SharedPreferences
 import com.vitorthemyth.core.domain.Preferences
+import com.vitorthemyth.core.domain.Preferences.Companion.KEY_SHOULD_SHOW_ONBOARDING
 import com.vitorthemyth.core.model.ActivityLevel
 import com.vitorthemyth.core.model.Gender
 import com.vitorthemyth.core.model.GoalType
@@ -95,6 +96,17 @@ class DefaultPreferences(
             proteinRatio = proteinRatio,
             fatRatio = fatRatio
         )
+    }
+
+    override fun saveShouldShowOnBoarding(shouldShow: Boolean) {
+        sharedPref.edit()
+            .putBoolean(KEY_SHOULD_SHOW_ONBOARDING, shouldShow)
+            .apply()
+    }
+
+    override fun loadShouldShowOnBoarding(): Boolean {
+        return sharedPref
+            .getBoolean(KEY_SHOULD_SHOW_ONBOARDING, true)
     }
 
 }
