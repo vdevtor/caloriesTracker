@@ -55,7 +55,7 @@ fun NutrientsBarInfo(
         contentAlignment = Alignment.Center
     ) {
         Canvas(
-            modifier = modifier
+            modifier = Modifier
                 .fillMaxWidth()
                 .aspectRatio(1f)
         ) {
@@ -87,7 +87,7 @@ fun NutrientsBarInfo(
         }
 
         Column(
-            modifier = modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             UnitDisplay(

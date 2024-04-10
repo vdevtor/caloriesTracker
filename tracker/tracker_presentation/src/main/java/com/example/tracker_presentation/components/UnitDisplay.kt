@@ -34,17 +34,17 @@ fun UnitDisplay(
             style = MaterialTheme.typography.h1,
             fontSize = amountTextSize,
             color = amountTextColor,
-            modifier = modifier.alignBy(LastBaseline)
+            modifier = Modifier.alignBy(LastBaseline)
         )
 
-        Spacer(modifier = modifier.width(spacing.spaceExtraSmall))
+        Spacer(modifier = Modifier.width(spacing.spaceExtraSmall))
 
         Text(
             text = unit,
             style = MaterialTheme.typography.body1,
             fontSize = unitTextSize,
             color = unitTextColor,
-            modifier = modifier.alignBy(LastBaseline)
+            modifier = Modifier.alignBy(LastBaseline)
         )
     }
 
