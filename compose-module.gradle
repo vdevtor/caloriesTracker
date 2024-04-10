@@ -49,6 +49,7 @@ dependencies {
     implementation Compose.navigation
     implementation Compose.viewModelCompose
     implementation Compose.activityCompose
+    debugImplementation Compose.debugImplementation
 
     kapt DaggerHilt.hiltCompiler
     implementation DaggerHilt.hiltAndroid
