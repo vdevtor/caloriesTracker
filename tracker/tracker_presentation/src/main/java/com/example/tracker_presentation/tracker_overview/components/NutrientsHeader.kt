@@ -37,6 +37,10 @@ fun NutrientsHeader(
         targetValue = state.totalCalories, label = ""
     )
 
+    val animatedCalorieGoal = animateIntAsState(
+        targetValue = state.caloriesGoal, label = ""
+    )
+
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -72,7 +76,7 @@ fun NutrientsHeader(
                     color = MaterialTheme.colors.onPrimary
                 )
                 UnitDisplay(
-                    amount = animatedCalorieCount.value,
+                    amount = animatedCalorieGoal.value,
                     unit = stringResource(id = com.vitorthemyth.core.R.string.kcal),
                     amountTextColor = MaterialTheme.colors.onPrimary,
                     amountTextSize = 40.sp,

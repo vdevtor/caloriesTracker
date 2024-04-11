@@ -37,115 +37,121 @@ import com.vitorthemyth.core_ui.LocalSpacing
 @OptIn(ExperimentalCoilApi::class)
 @Composable
 fun TrackedFoodItem(
-   trackedFood: TrackedFood,
-   onDeleteClick: () -> Unit,
-   modifier: Modifier = Modifier
+    trackedFood: TrackedFood,
+    onDeleteClick: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
-   val spacing = LocalSpacing.current
+    val spacing = LocalSpacing.current
 
-   Row(
-      modifier = modifier
-         .clip(RoundedCornerShape(5.dp))
-         .padding(spacing.spaceExtraSmall)
-         .shadow(
-            elevation = 1.dp,
-            shape = RoundedCornerShape(5.dp)
-         )
-         .background(MaterialTheme.colors.surface)
-         .padding(end = spacing.spaceMedium)
-         .height(100.dp),
-      horizontalArrangement = Arrangement.SpaceBetween,
-      verticalAlignment = Alignment.CenterVertically
-   ) {
-      Image(
-         painter = rememberImagePainter(data = trackedFood.imageUrl,
-                                        builder = {
-                                           crossfade(true)
-                                           error(com.vitorthemyth.core.R.drawable.ic_burger)
-                                        }),
-         contentDescription = trackedFood.name,
-         contentScale = ContentScale.Crop,
-         modifier = Modifier
-            .fillMaxHeight()
-            .aspectRatio(1f)
-            .clip(
-               RoundedCornerShape(
-                  topStart = 5.dp,
-                  bottomStart = 5.dp
-               )
-            )
-      )
-      Spacer(modifier = Modifier.width(spacing.spaceMedium))
-
-      Column(
-         modifier = Modifier.weight(1f)
-      ) {
-         Text(
-            text = trackedFood.name,
-            style = MaterialTheme.typography.body1,
-            overflow = TextOverflow.Ellipsis,
-            maxLines = 2
-         )
-         Spacer(modifier = Modifier.height(spacing.spaceExtraSmall))
-         Text(
-            text = stringResource(
-               id = com.vitorthemyth.core.R.string.nutrient_info,
-               trackedFood.amount,
-               trackedFood.calories
-            ),
-            style = MaterialTheme.typography.body2
-         )
-      }
-      Spacer(modifier = Modifier.width(spacing.spaceMedium))
-      Column(
-         modifier = Modifier.fillMaxHeight(),
-         verticalArrangement = Arrangement.Center
-      ) {
-         Icon(
-            imageVector = Icons.Default.Close,
-            contentDescription = stringResource(id = com.vitorthemyth.core.R.string.delete),
+    Row(
+        modifier = modifier
+           .clip(RoundedCornerShape(5.dp))
+           .padding(spacing.spaceExtraSmall)
+           .shadow(
+              elevation = 1.dp,
+              shape = RoundedCornerShape(5.dp)
+           )
+           .background(MaterialTheme.colors.surface)
+           .padding(end = spacing.spaceMedium)
+           .height(100.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Image(
+            painter = rememberImagePainter(data = trackedFood.imageUrl,
+                builder = {
+                    crossfade(true)
+                    error(com.vitorthemyth.core.R.drawable.ic_burger)
+                }),
+            contentDescription = trackedFood.name,
+            contentScale = ContentScale.Crop,
             modifier = Modifier
-               .align(Alignment.End)
-               .clickable {
-                  onDeleteClick()
-               }
-         )
-         Spacer(modifier = Modifier.height(spacing.spaceExtraSmall))
-         Row(
-            verticalAlignment = Alignment.CenterVertically
-         ) {
+               .fillMaxHeight()
+               .aspectRatio(1f)
+               .clip(
+                  RoundedCornerShape(
+                     topStart = 5.dp,
+                     bottomStart = 5.dp
+                  )
+               )
+        )
+        Spacer(modifier = Modifier.width(spacing.spaceMedium))
 
-            NutrientInfo(
-               name = stringResource(id = com.vitorthemyth.core.R.string.carbs),
-               amount = trackedFood.carbs,
-               unit = stringResource(id = com.vitorthemyth.core.R.string.grams),
-               amountTextSize = 16.sp,
-               unitTextSize = 12.sp,
-               nameTextStyle = MaterialTheme.typography.body2
+        Column(
+            modifier = Modifier.weight(1f)
+        ) {
+            Text(
+                text = trackedFood.name,
+                style = MaterialTheme.typography.body1,
+                overflow = TextOverflow.Ellipsis,
+                maxLines = 2
             )
-
-            Spacer(modifier = Modifier.height(spacing.spaceSmall))
-
-            NutrientInfo(
-               name = stringResource(id = com.vitorthemyth.core.R.string.protein),
-               amount = trackedFood.protein,
-               unit = stringResource(id = com.vitorthemyth.core.R.string.grams),
-               amountTextSize = 16.sp,
-               unitTextSize = 12.sp,
-               nameTextStyle = MaterialTheme.typography.body2
+            Spacer(modifier = Modifier.height(spacing.spaceExtraSmall))
+            Text(
+                text = stringResource(
+                    id = com.vitorthemyth.core.R.string.nutrient_info,
+                    trackedFood.amount,
+                    trackedFood.calories
+                ),
+                style = MaterialTheme.typography.body2
             )
-
-            Spacer(modifier = Modifier.height(spacing.spaceSmall))
-
-            NutrientInfo(
-               name = stringResource(id = com.vitorthemyth.core.R.string.fat),
-               amount = trackedFood.fat,
-               unit = stringResource(id = com.vitorthemyth.core.R.string.grams),
-               amountTextSize = 16.sp,
-               unitTextSize = 12.sp,
-               nameTextStyle = MaterialTheme.typography.body2
+        }
+        Spacer(modifier = Modifier.width(spacing.spaceMedium))
+        Column(
+            modifier = Modifier.fillMaxHeight(),
+            verticalArrangement = Arrangement.Center
+        ) {
+            Icon(
+                imageVector = Icons.Default.Close,
+                contentDescription = stringResource(id = com.vitorthemyth.core.R.string.delete),
+                modifier = Modifier
+                   .align(Alignment.End)
+                   .clickable {
+                      onDeleteClick()
+                   }
             )
-         }
-      }
-   }
+            Spacer(modifier = Modifier.height(spacing.spaceExtraSmall))
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+
+                NutrientInfo(
+                    name = stringResource(id = com.vitorthemyth.core.R.string.carbs),
+                    amount = trackedFood.carbs,
+                    unit = stringResource(id = com.vitorthemyth.core.R.string.grams),
+                    amountTextSize = 14.sp,
+                    unitTextSize = 12.sp,
+                    nameTextStyle = MaterialTheme.typography.body2.copy(
+                        fontSize = 12.sp
+                    )
+                )
+
+                Spacer(modifier = Modifier.width(spacing.spaceSmall))
+
+                NutrientInfo(
+                    name = stringResource(id = com.vitorthemyth.core.R.string.protein),
+                    amount = trackedFood.protein,
+                    unit = stringResource(id = com.vitorthemyth.core.R.string.grams),
+                    amountTextSize = 14.sp,
+                    unitTextSize = 12.sp,
+                    nameTextStyle = MaterialTheme.typography.body2.copy(
+                        fontSize = 12.sp
+                    )
+                )
+
+                Spacer(modifier = Modifier.width(spacing.spaceSmall))
+
+                NutrientInfo(
+                    name = stringResource(id = com.vitorthemyth.core.R.string.fat),
+                    amount = trackedFood.fat,
+                    unit = stringResource(id = com.vitorthemyth.core.R.string.grams),
+                    amountTextSize = 14.sp,
+                    unitTextSize = 12.sp,
+                    nameTextStyle = MaterialTheme.typography.body2.copy(
+                        fontSize = 12.sp
+                    )
+                )
+            }
+        }
+    }
 }
