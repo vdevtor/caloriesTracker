@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.tracker_domain.use_case.TrackerUseCases
 import com.vitorthemyth.core.domain.Preferences
-import com.vitorthemyth.core.navigation.Route
 import com.vitorthemyth.core.util.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
@@ -38,19 +37,6 @@ class TrackerOverViewViewModel @Inject constructor(
 
     fun onEvent(event: TrackerOverViewEvent) {
         when (event) {
-            is TrackerOverViewEvent.OnAddFoodFoodClick -> {
-                viewModelScope.launch {
-                    _uiEvent.send(
-                        UiEvent.Navigate(
-                            route = Route.SEARCH
-                                    + "/${event.meal.mealType.name}"
-                                    + "/${state.date.dayOfMonth}"
-                                    + "/${state.date.monthValue}"
-                                    + "/${state.date.year}"
-                        )
-                    )
-                }
-            }
 
             is TrackerOverViewEvent.OnDeleteTrackedFoodClick -> {
                 viewModelScope.launch {

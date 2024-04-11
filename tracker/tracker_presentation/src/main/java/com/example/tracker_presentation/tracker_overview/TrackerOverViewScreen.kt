@@ -25,19 +25,13 @@ import com.vitorthemyth.tracker_presentation.R
 
 @Composable
 fun TrackerOverViewScreen(
-   onNavigate: (UiEvent.Navigate) -> Unit, viewModel: TrackerOverViewViewModel = hiltViewModel()
+   onNavigateToSearch: (String,Int,Int,Int,) -> Unit, viewModel: TrackerOverViewViewModel =
+      hiltViewModel()
 ) {
    val spacing = LocalSpacing.current
    val state = viewModel.state
    val context = LocalContext.current
-   LaunchedEffect(key1 = context){
-         viewModel.uiEvent.collect{event->
-            when(event){
-               is UiEvent.Navigate-> onNavigate(event)
-               else-> Unit
-            }
-         }
-   }
+
    LazyColumn(
       modifier = Modifier
          .fillMaxSize()
@@ -75,7 +69,12 @@ fun TrackerOverViewScreen(
                   text = stringResource(
                      id = com.vitorthemyth.core.R.string.add_meal, meal.name.asString(context)
                   ), onClick = {
-                     viewModel.onEvent(TrackerOverViewEvent.OnAddFoodFoodClick(meal))
+                     onNavigateToSearch(
+                        meal.name.asString(context),
+                        state.date.dayOfMonth,
+                        state.date.monthValue,
+                        state.date.year
+                     )
                   }, modifier = Modifier.fillMaxWidth()
                )
             }
