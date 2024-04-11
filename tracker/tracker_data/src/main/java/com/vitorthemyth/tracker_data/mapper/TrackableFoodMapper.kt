@@ -19,6 +19,10 @@ fun Product.toTrackableFood(): TrackableFood? {
         carbsPer100g = carbsPer100g,
         proteinPer100g = proteinsPer100g,
         fatPer100g = fatPer100g
-    )
+    ).nonEmptyItems()
+}
+
+private fun TrackableFood.nonEmptyItems(): TrackableFood?{
+    return if (carbsPer100g == 0 && proteinPer100g == 0 && fatPer100g == 0) null else this
 }
 

@@ -32,6 +32,7 @@ class TrackerOverViewViewModel @Inject constructor(
     private var getsFoodForDateJob: Job? = null
 
     init {
+        refreshFoods()
         preferences.saveShouldShowOnBoarding(shouldShow = false)
     }
 
@@ -42,7 +43,7 @@ class TrackerOverViewViewModel @Inject constructor(
                     _uiEvent.send(
                         UiEvent.Navigate(
                             route = Route.SEARCH
-                                    + "/${event.meal.name}"
+                                    + "/${event.meal.mealType.name}"
                                     + "/${state.date.dayOfMonth}"
                                     + "/${state.date.monthValue}"
                                     + "/${state.date.year}"
@@ -75,7 +76,7 @@ class TrackerOverViewViewModel @Inject constructor(
             is TrackerOverViewEvent.OnToggleMealClick -> {
                 state = state.copy(
                     meals = state.meals.map {
-                        if (it.name == event.meal.name){
+                        if (it.name == event.meal.name) {
                             it.copy(isExpanded = !it.isExpanded)
                         } else it
                     }
@@ -90,7 +91,7 @@ class TrackerOverViewViewModel @Inject constructor(
             .getFoodsForDate(state.date)
             .onEach { foods ->
                 val nutrientsResult = trackerUseCases.calculateMealsNutrients(foods)
-                state.copy(
+                state = state.copy(
                     totalCarbs = nutrientsResult.totalCarbs,
                     totalProtein = nutrientsResult.totalProtein,
                     totalFat = nutrientsResult.totalFat,
