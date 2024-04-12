@@ -70,7 +70,7 @@ fun TrackerOverViewScreen(
                      id = com.vitorthemyth.core.R.string.add_meal, meal.name.asString(context)
                   ), onClick = {
                      onNavigateToSearch(
-                        meal.name.asString(context),
+                        meal.mealType.name,
                         state.date.dayOfMonth,
                         state.date.monthValue,
                         state.date.year
