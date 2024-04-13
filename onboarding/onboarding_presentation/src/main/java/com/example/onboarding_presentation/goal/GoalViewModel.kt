@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vitorthemyth.core.domain.Preferences
 import com.vitorthemyth.core.model.GoalType
-import com.vitorthemyth.core.navigation.Route
 import com.vitorthemyth.core.util.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
@@ -33,7 +32,7 @@ class GoalViewModel @Inject constructor(
     fun onNextClick(){
         viewModelScope.launch {
             preferences.saveGoalType(selectedGoal)
-            _uiEvent.send(UiEvent.Navigate(Route.NUTRIENTS_GOAL))
+            _uiEvent.send(UiEvent.Success)
         }
     }
 }

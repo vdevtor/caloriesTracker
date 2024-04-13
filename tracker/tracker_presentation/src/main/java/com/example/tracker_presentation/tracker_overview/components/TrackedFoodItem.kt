@@ -84,7 +84,8 @@ fun TrackedFoodItem(
                 text = trackedFood.name,
                 style = MaterialTheme.typography.body1,
                 overflow = TextOverflow.Ellipsis,
-                maxLines = 2
+                maxLines = 1,
+                modifier = Modifier.align(Alignment.CenterHorizontally)
             )
             Spacer(modifier = Modifier.height(spacing.spaceExtraSmall))
             Text(
@@ -93,26 +94,15 @@ fun TrackedFoodItem(
                     trackedFood.amount,
                     trackedFood.calories
                 ),
-                style = MaterialTheme.typography.body2
+                style = MaterialTheme.typography.body1,
+                modifier = Modifier.align(Alignment.CenterHorizontally)
             )
-        }
-        Spacer(modifier = Modifier.width(spacing.spaceMedium))
-        Column(
-            modifier = Modifier.fillMaxHeight(),
-            verticalArrangement = Arrangement.Center
-        ) {
-            Icon(
-                imageVector = Icons.Default.Close,
-                contentDescription = stringResource(id = com.vitorthemyth.core.R.string.delete),
-                modifier = Modifier
-                   .align(Alignment.End)
-                   .clickable {
-                      onDeleteClick()
-                   }
-            )
-            Spacer(modifier = Modifier.height(spacing.spaceExtraSmall))
+            Spacer(modifier = Modifier.height(spacing.spaceSmall))
+
             Row(
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center,
+                modifier = Modifier.align(Alignment.CenterHorizontally)
             ) {
 
                 NutrientInfo(
@@ -153,5 +143,15 @@ fun TrackedFoodItem(
                 )
             }
         }
+        Icon(
+            imageVector = Icons.Default.Close,
+            contentDescription = stringResource(id = com.vitorthemyth.core.R.string.delete),
+            modifier = Modifier
+                .clickable {
+                    onDeleteClick()
+                }
+                .align(Alignment.Top)
+                .padding(top = spacing.spaceSmall)
+        )
     }
 }

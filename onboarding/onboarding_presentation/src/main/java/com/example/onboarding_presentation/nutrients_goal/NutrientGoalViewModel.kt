@@ -8,7 +8,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.onboarding_domain.use_case.ValidateNutrients
 import com.vitorthemyth.core.domain.Preferences
 import com.vitorthemyth.core.domain.use_case.FilterOutDigits
-import com.vitorthemyth.core.navigation.Route
 import com.vitorthemyth.core.util.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
@@ -62,7 +61,7 @@ class NutrientGoalViewModel @Inject constructor(
                         preferences.saveProteinRatio(result.proteinsRatio)
                         preferences.saveFatRatio(result.fatRatio)
                         viewModelScope.launch {
-                            _uiEvent.send(UiEvent.Navigate(Route.TRACKER_OVERVIEW))
+                            _uiEvent.send(UiEvent.Success)
                         }
                     }
 

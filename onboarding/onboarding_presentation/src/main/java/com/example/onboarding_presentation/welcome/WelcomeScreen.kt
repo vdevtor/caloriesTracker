@@ -16,14 +16,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import com.example.onboarding_presentation.components.ActionButton
 import com.vitorthemyth.core.R
-import com.vitorthemyth.core.navigation.Route
-import com.vitorthemyth.core.util.UiEvent
 import com.vitorthemyth.core_ui.LocalSpacing
 
 
 @Composable
 fun WelcomeScreen(
-    onNavigate: (UiEvent.Navigate) -> Unit
+    onNextClick: () -> Unit
 ) {
     val spacing = LocalSpacing.current
     Column(
@@ -44,7 +42,7 @@ fun WelcomeScreen(
 
         ActionButton(
             text = stringResource(id = R.string.lets_go),
-            onClick = { onNavigate(UiEvent.Navigate(Route.GENDER)) },
+            onClick = { onNextClick() },
             modifier = Modifier.align(Alignment.CenterHorizontally)
         )
     }

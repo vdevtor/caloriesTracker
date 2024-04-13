@@ -14,44 +14,38 @@ import java.lang.Exception
 import java.time.LocalDate
 
 class TrackerRepositoryImp(
-    private val dao: TrackerDao,
-    private val api: OpenFoodApi
+   private val dao: TrackerDao, private val api: OpenFoodApi
 ) : TrackerRepository {
 
-    override suspend fun searchFood(
-        query: String,
-        page: Int,
-        pageSize: Int
-    ): Result<List<TrackableFood>> {
-        return try {
-            val searchedDto = api.searchFood(
-                query = query,
-                page = page,
-                pageSize = pageSize
-            )
+   override suspend fun searchFood(
+      query: String, page: Int, pageSize: Int
+   ): Result<List<TrackableFood>> {
+      return try {
+         val searchedDto = api.searchFood(
+            query = query, page = page, pageSize = pageSize
+         )
 
-            Result.success(searchedDto.products.mapNotNull { it.toTrackableFood() })
-        } catch (e: Exception) {
-            e.printStackTrace()
-            Result.failure(e)
-        }
-    }
+         Result.success(searchedDto.products.mapNotNull { it.toTrackableFood() })
 
-    override suspend fun insertTrackedFood(food: TrackedFood) {
-        dao.insertTrackedFood(food.toTrackedFoodEntity())
-    }
+      } catch (e: Exception) {
+         e.printStackTrace()
+         Result.failure(e)
+      }
+   }
 
-    override suspend fun deleteTrackedFood(food: TrackedFood) {
-        dao.deleteTrackedFood(food.toTrackedFoodEntity())
-    }
+   override suspend fun insertTrackedFood(food: TrackedFood) {
+      dao.insertTrackedFood(food.toTrackedFoodEntity())
+   }
 
-    override fun getFoodsForDate(localDate: LocalDate): Flow<List<TrackedFood>> {
-        return dao.getFoodsForDate(
-            day = localDate.dayOfMonth,
-            month = localDate.monthValue,
-            year = localDate.year
-        ).map { entities ->
-            entities.map { it.toTrackedFood() }
-        }
-    }
+   override suspend fun deleteTrackedFood(food: TrackedFood) {
+      dao.deleteTrackedFood(food.toTrackedFoodEntity())
+   }
+
+   override fun getFoodsForDate(localDate: LocalDate): Flow<List<TrackedFood>> {
+      return dao.getFoodsForDate(
+         day = localDate.dayOfMonth, month = localDate.monthValue, year = localDate.year
+      ).map { entities ->
+         entities.map { it.toTrackedFood() }
+      }
+   }
 }
