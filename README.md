@@ -22,7 +22,8 @@ This results in a scalable and maintainable codebase, enabling efficient testing
 * Android Sdk
 
 
-# Agradecimentos
-Agradecimento especial ao Philipp Lackner mentor e criador deste projeto o qual foi reproduzido
-em seu curso *Building Industry-Level Apps With Multi-Module Architecture*
+* Special thanks
+
+To **Philipp Lackner**, mentor and creator of this project, 
+which was reproduced in his course **Building Industry-Level Apps With Multi-Module Architecture**."
 
