@@ -27,3 +27,5 @@ This results in a scalable and maintainable codebase, enabling efficient testing
 To **Philipp Lackner**, mentor and creator of this project, 
 which was reproduced in his course **Building Industry-Level Apps With Multi-Module Architecture**."
 
+
+<img src="screen1.png" alt="app tracker overview screen" width="300" height="520"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="screen2.png" alt="app tracker overview screen" width="300" height="520"/>
