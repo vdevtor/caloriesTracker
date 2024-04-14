@@ -25,63 +25,68 @@ import com.vitorthemyth.tracker_presentation.R
 
 @Composable
 fun TrackerOverViewScreen(
-   onNavigateToSearch: (String,Int,Int,Int,) -> Unit, viewModel: TrackerOverViewViewModel =
-      hiltViewModel()
+    onNavigateToSearch: (String, Int, Int, Int) -> Unit, viewModel: TrackerOverViewViewModel =
+        hiltViewModel()
 ) {
-   val spacing = LocalSpacing.current
-   val state = viewModel.state
-   val context = LocalContext.current
+    val spacing = LocalSpacing.current
+    val state = viewModel.state
+    val context = LocalContext.current
 
-   LazyColumn(
-      modifier = Modifier
-         .fillMaxSize()
-         .padding(bottom = spacing.spaceMedium)
-   ) {
-      item {
-         NutrientsHeader(state = state)
-         DaySelector(date = state.date, onPreviousDayClick = {
-            viewModel.onEvent(TrackerOverViewEvent.OnPreviousDayClick)
-         }, onNextDayClick = {
-            viewModel.onEvent(TrackerOverViewEvent.OnNextDayClick)
-         }, modifier = Modifier
-            .fillMaxWidth()
-            .padding(spacing.spaceMedium)
-         )
-         Spacer(modifier = Modifier.height(spacing.spaceMedium))
-      }
-      items(state.meals) { meal ->
-         ExpandableMeal(meal = meal, content = {
-            Column(
-               modifier = Modifier
-                  .fillMaxWidth()
-                  .padding(horizontal = spacing.spaceSmall)
-            ) {
-               state.trackedFood.forEach { food ->
-                  TrackedFoodItem(trackedFood = food, onDeleteClick = {
-                     viewModel.onEvent(
-                        TrackerOverViewEvent.OnDeleteTrackedFoodClick(food)
-                     )
-                  })
-                  Spacer(modifier = Modifier.height(spacing.spaceMedium))
+    LazyColumn(
+        modifier = Modifier
+           .fillMaxSize()
+           .padding(bottom = spacing.spaceMedium)
+    ) {
+        item {
+            NutrientsHeader(state = state)
+            DaySelector(date = state.date, onPreviousDayClick = {
+                viewModel.onEvent(TrackerOverViewEvent.OnPreviousDayClick)
+            }, onNextDayClick = {
+                viewModel.onEvent(TrackerOverViewEvent.OnNextDayClick)
+            }, modifier = Modifier
+               .fillMaxWidth()
+               .padding(spacing.spaceMedium)
+            )
+            Spacer(modifier = Modifier.height(spacing.spaceMedium))
+        }
+        items(state.meals) { meal ->
+            ExpandableMeal(meal = meal, content = {
+                Column(
+                    modifier = Modifier
+                       .fillMaxWidth()
+                       .padding(horizontal = spacing.spaceSmall)
+                ) {
 
-               }
-               AddButton(
-                  text = stringResource(
-                     id = com.vitorthemyth.core.R.string.add_meal, meal.name.asString(context)
-                  ), onClick = {
-                     onNavigateToSearch(
-                        meal.mealType.name,
-                        state.date.dayOfMonth,
-                        state.date.monthValue,
-                        state.date.year
-                     )
-                  }, modifier = Modifier.fillMaxWidth()
-               )
-            }
-         }, onToggleClick = {
-            viewModel.onEvent(TrackerOverViewEvent.OnToggleMealClick(meal))
-         }, modifier = Modifier.fillMaxWidth()
-         )
-      }
-   }
+                    val foods = state.trackedFood.filter {
+                        it.mealType == meal.mealType
+                    }
+                    foods.forEach { food ->
+                        TrackedFoodItem(trackedFood = food, onDeleteClick = {
+                            viewModel.onEvent(
+                                TrackerOverViewEvent.OnDeleteTrackedFoodClick(food)
+                            )
+                        })
+                        Spacer(modifier = Modifier.height(spacing.spaceMedium))
+
+                    }
+                    AddButton(
+                        text = stringResource(
+                            id = com.vitorthemyth.core.R.string.add_meal,
+                            meal.name.asString(context)
+                        ), onClick = {
+                            onNavigateToSearch(
+                                meal.mealType.name,
+                                state.date.dayOfMonth,
+                                state.date.monthValue,
+                                state.date.year
+                            )
+                        }, modifier = Modifier.fillMaxWidth()
+                    )
+                }
+            }, onToggleClick = {
+                viewModel.onEvent(TrackerOverViewEvent.OnToggleMealClick(meal))
+            }, modifier = Modifier.fillMaxWidth()
+            )
+        }
+    }
 }
