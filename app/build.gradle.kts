@@ -16,7 +16,9 @@ android {
         versionCode = ProjectConfig.versionCode
         versionName = ProjectConfig.versionName
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.plcoding.calorytracker.HiltTestRunner"
+        testInstrumentationRunnerArguments["language"] = "en"
+
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -42,7 +44,7 @@ android {
     }
     packaging {
         resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "/META-INF/*"
         }
     }
 

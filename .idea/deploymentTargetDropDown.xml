@@ -8,6 +8,12 @@
       <entry key="PreviewNutrientInfo">
         <State />
       </entry>
+      <entry key="TrackerOverViewE2E">
+        <State />
+      </entry>
+      <entry key="addBreakfast_appearsUnderBreakfast_nutrientsProperlyCalculated()">
+        <State />
+      </entry>
       <entry key="app">
         <State>
           <targetSelectedWithDropDown>
